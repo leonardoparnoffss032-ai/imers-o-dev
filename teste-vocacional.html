@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Vocacional - Guia de Estudos</title>
+    <link rel="stylesheet" href="projectAlura.css"> <!-- Reutiliza o CSS principal -->
+    <link rel="stylesheet" href="teste-vocacional.css"> <!-- CSS específico para o teste -->
+</head>
+<body class="dark-mode"> <!-- Começa no modo escuro por padrão -->
+
+    <aside id="sidebar">
+        <!-- O menu lateral será preenchido pelo projectAlura.js -->
+        <div id="subject-browser"></div>
+    </aside>
+
+    <div id="page-wrapper">
+        <header class="site-header">
+            <div class="container">
+                <div class="header-top">
+                    <button id="sidebar-toggle" title="Navegar por Matérias">☰</button>
+                    <h1>Teste Vocacional</h1>
+                    <button id="theme-toggle" title="Alterar tema">🌙</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="test-container container">
+            <p style="text-align: center; margin-top: -1rem; margin-bottom: 2rem; font-size: 1.1rem; color: var(--text-secondary);">Responda as 20 perguntas abaixo para descobrir áreas e carreiras compatíveis com seu perfil.</p>
+            <!-- O formulário foi removido. A lógica agora é controlada pelo JS. -->
+            <div id="question-area">
+                <!-- As perguntas serão injetadas aqui uma por vez -->
+            </div>
+    
+            <div id="result-container" class="hidden"></div>
+        </div>
+    </div>
+
+    <script src="projectAlura.js"></script>
+    <script src="teste-vocacional.js"></script>
+</body>
+</html>

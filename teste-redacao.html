@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Redação - Guia de Estudos</title>
+    <link rel="stylesheet" href="projectAlura.css">
+    <link rel="stylesheet" href="redacao-style.css">
+</head>
+<body class="sidebar-closed">
+    <aside id="sidebar">
+        <!-- O menu lateral será preenchido pelo projectAlura.js -->
+        <div id="subject-browser"></div>
+    </aside>
+
+    <div id="page-wrapper">
+        <header class="site-header">
+            <div class="container">
+                <div class="header-top">
+                    <button id="sidebar-toggle" title="Navegar por Matérias">☰</button>
+                    <h1>Guia de Estudos</h1>
+                    <button id="theme-toggle" title="Alterar tema">🌙</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="redacao-container container">
+            <h1>Pratique sua Redação</h1>
+            <p>Receba um tema aleatório, escreva seu texto e receba uma avaliação automática e simplificada baseada nos critérios do ENEM.</p>
+            
+            <section id="tema-section" class="redacao-section">
+                <h2>Seu Tema</h2>
+                <div id="tema-sorteado">
+                    <p>Clique no botão abaixo para sortear um tema.</p>
+                </div>
+                <button id="sortear-tema-btn">Sortear Novo Tema</button>
+            </section>
+    
+            <section id="editor-section" class="redacao-section">
+                <h2>Sua Redação</h2>
+                <textarea id="texto-redacao" placeholder="Comece a escrever sua redação aqui... (mínimo de 100 palavras)"></textarea>
+                <button id="avaliar-redacao-btn">Avaliar Redação</button>
+            </section>
+    
+            <section id="resultado-section" class="redacao-section" style="display: none;">
+                <h2>Resultado da Avaliação</h2>
+                <div id="resultado-feedback"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="projectAlura.js"></script>
+</body>
+</html>

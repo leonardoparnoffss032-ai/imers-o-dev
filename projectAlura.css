@@ -1,0 +1,495 @@
+/* c:/Users/Parnoff/VSprojects/style.css */
+
+/* 
+  Define as variáveis de cor para os dois temas.
+  :root contém as cores do modo claro.
+  .dark-mode contém as cores do modo escuro.
+*/
+:root {
+    --bg-color: #fff;
+    --text-color: #222;
+    --card-bg-color: #f9f9f9;
+    --header-bg-color: var(--bg-color); /* Cabeçalho com a mesma cor do fundo */
+    --header-text-color: var(--text-color); /* Texto do cabeçalho escuro */
+    --accent-color: #007bff;
+    --accent-color-hover: #0056b3;
+    --border-color: #eaeaea;
+    --shadow-color: rgba(0, 0, 0, 0.05); /* Sombra muito mais sutil */
+}
+
+.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e6f1; /* Branco levemente azulado */
+    --card-bg-color: #1e1e1e;
+    --header-bg-color: #1a1a1a;
+    --header-text-color: #e0e6f1;
+    --accent-color: #3b82f6;
+    --accent-color-hover: #60a5fa;
+    --border-color: #333;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: var(--bg-color);
+    overflow-x: hidden; /* Previne a rolagem horizontal, mas permite a vertical */
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- Estilos do Sidebar e Page Wrapper --- */
+#sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 280px;
+    background-color: var(--card-bg-color);
+    border-right: 1px solid var(--border-color);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    /* Correção Definitiva para Rolagem Vertical */
+    display: flex; /* Usa flexbox para controlar o conteúdo interno */
+    flex-direction: column;
+    padding: 0; /* Remove o padding do container de rolagem */
+
+    box-sizing: border-box;
+}
+
+body:not(.sidebar-closed) #sidebar {
+    transform: translateX(0);
+}
+
+#page-wrapper {
+    width: 100%;
+    transition: margin-left 0.3s ease-in-out;
+    /* Garante que o rodapé fique no fim da tela */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden; /* Previne qualquer barra de rolagem no wrapper */
+}
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.site-header {
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    padding: 2rem 0;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color); /* Mantém a linha de separação */
+    transition: background-color 0.3s;
+}
+
+.header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Empurra o conteúdo quando o sidebar está aberto em telas maiores */
+@media (min-width: 768px) {
+    body:not(.sidebar-closed) #page-wrapper {
+        margin-left: 280px;
+    }
+}
+
+#sidebar-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+#theme-toggle {
+    position: absolute;
+    right: 0;
+    background: none;
+    border: none; /* Remove a borda do botão */
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Novo estilo da barra de pesquisa */
+.search-form {
+    margin-top: 2rem;
+    position: relative;
+}
+
+.search-form input[type="search"] {
+    width: 100%;
+    padding: 0.9rem 4rem 0.9rem 1.5rem; /* Espaço para o botão */
+    border: 1px solid var(--border-color);
+    border-radius: 50px; /* Bordas arredondadas */
+    font-size: 1.1rem;
+    background-color: transparent; /* Fundo transparente */
+    color: var(--text-color); 
+    box-sizing: border-box;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.search-form input[type="search"]::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.search-form button {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    bottom: 6px;
+    padding: 0 1.5rem;
+    border: none;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: var(--accent-color-hover);
+}
+
+/* --- Estilos para o Filtro de Ano --- */
+.year-filter {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.year-filter input[type="radio"] {
+    /* Esconde o botão de rádio padrão */
+    display: none;
+}
+
+.year-filter label, .year-filter-label {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+    user-select: none;
+}
+
+.year-filter input[type="radio"]:checked + label {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.year-filter label:hover, .year-filter-label:hover {
+    background-color: var(--card-bg-color);
+}
+
+/* --- Estilos para o Navegador de Matérias --- */
+#subject-browser {
+    flex-grow: 1; /* Faz o conteúdo crescer para ocupar o espaço */
+    overflow-y: auto; /* Adiciona rolagem vertical apenas neste elemento */
+    min-height: 0; /* Essencial para o overflow funcionar em um container flex */
+    padding: 1.5rem; /* Aplica o padding aqui */
+}
+
+.main-menu-header {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.subject-list, .topic-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.subject-list a, .topic-list a {
+    display: block;
+    padding: 0.8rem 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: normal;
+    transition: background-color 0.2s;
+}
+
+.subject-list a:hover, .topic-list a:hover {
+    background-color: rgba(0,0,0,0.05);
+    text-decoration: none;
+}
+
+.dark-mode .subject-list a:hover, .dark-mode .topic-list a:hover {
+    background-color: rgba(255,255,255,0.05);
+}
+
+.back-button {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+}
+
+.back-icon {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.selected-subject-header {
+    padding: 1rem 0.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: rgba(0,0,0,0.03);
+}
+
+.sidebar-menu .subject-list .menu-item {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-menu .menu-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar-menu .menu-header {
+    padding: 0.8rem 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+/* Permite que o nome da matéria quebre a linha se for muito longo */
+.sidebar-menu .menu-header span:first-child {
+    flex: 1; /* Ocupa o espaço disponível, forçando a quebra de linha */
+    margin-right: 0.5rem;
+}
+
+.sidebar-menu .menu-header:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+.sidebar-menu .menu-item {
+    border-bottom: 1px solid var(--border-color);
+}
+.sidebar-menu .submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: rgba(0,0,0,0.03);
+}
+
+.dark-mode .sidebar-menu .submenu {
+    background-color: rgba(0,0,0,0.2);
+}
+
+/* Estilo para o link do Teste Vocacional */
+.vocational-test-link {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 0.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    transition: background-color 0.2s;
+}
+
+.vocational-test-link:hover {
+    background-color: rgba(0,0,0,0.05);
+    text-decoration: none; /* Remove sublinhado no hover */
+}
+
+/* Estilos para o modo de foco no menu */
+.sidebar-menu .submenu.focused > .menu-item:not(.focused-item) {
+    display: none;
+}
+
+
+.sidebar-menu .submenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu .submenu a {
+    display: block;
+    padding: 0.7rem 0.5rem 0.7rem 1.5rem; /* Indentação para sub-itens */
+    font-weight: normal;
+}
+main {
+    padding: 2rem 0;
+    /* Faz o conteúdo principal crescer e empurrar o rodapé para baixo */
+    flex-grow: 1;
+    /* Adiciona espaço na parte inferior para não ser coberto pelo rodapé fixo */
+    padding-bottom: 100px; 
+}
+
+section {
+    background: var(--card-bg-color);
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color); /* Troca a sombra por uma borda sutil */
+    transition: background-color 0.3s;
+}
+
+h2 {
+    color: var(--text-color);
+    opacity: 0.9;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.75rem; /* Mais espaço abaixo do título */
+    transition: border-color 0.3s;
+}
+
+.category-list, .article-list {
+    list-style: none;
+    padding: 0;
+}
+
+.category-list li, .article-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color); /* Mantém a borda entre os itens */
+    transition: border-color 0.3s; 
+}
+
+.category-list li:last-child, .article-list li:last-child {
+    border-bottom: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+/* Remove a margem padrão do H2 dentro do rodapé para compactá-lo */
+.site-footer h2 {
+    margin: 0;
+}
+
+a:hover {
+    color: var(--accent-color-hover);
+    text-decoration: underline;
+}
+
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 900;
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border-top: 1px solid var(--border-color);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Ajusta a seção de destaques dentro do rodapé */
+#featured-topics-container .collapsible {
+    border: none;
+    margin: 0;
+}
+
+/* --- Estilo para a mensagem introdutória --- */
+.intro-message {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.intro-message h2 {
+    border-bottom: none; /* Remove a borda padrão dos H2 */
+    opacity: 1; /* Garante que o título da introdução seja mais forte que o parágrafo */
+}
+
+/* --- Estilos para o Acordeão/Collapsible --- */
+.collapsible-header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Impede que o texto seja selecionado ao clicar */
+    user-select: none; 
+}
+
+.collapsible-icon {
+    transition: transform 0.3s ease-in-out;
+    font-size: 1rem;
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+/* Quando a seção estiver ativa, a seta gira e o conteúdo aparece */
+.collapsible.active .collapsible-icon {
+    transform: rotate(180deg);
+}
+
+/* Rotação do ícone para o menu lateral */
+.menu-item.active > .menu-header .collapsible-icon {
+    transform: rotate(180deg);
+}
+
+/* --- Estilos para o Conteúdo do Artigo --- */
+.article-content h3 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    opacity: 0.85;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.article-content p,
+.article-content li {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+.article-content ul,
+.article-content ol {
+    padding-left: 2rem;
+}
+
+.article-content li {
+    margin-bottom: 0.75rem;
+}

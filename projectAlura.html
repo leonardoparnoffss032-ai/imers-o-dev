@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Estudos</title> 
+    <link rel="stylesheet" href="projectAlura.css">
+</head>
+<body class="sidebar-closed">
+    <aside id="sidebar">
+        <!-- Nova seção para navegar por matéria -->
+        <div id="subject-browser"></div>
+    </aside>
+
+    <div id="page-wrapper">
+        <header class="site-header">
+            <div class="container">
+                <div class="header-top">
+                    <button id="sidebar-toggle" title="Navegar por Matérias">☰</button>
+                    <h1>Guia de Estudos</h1>
+                    <button id="theme-toggle" title="Alterar tema">🌙</button>
+                </div>
+                <form class="search-form">
+                    <input type="search" id="search-input" placeholder="Pesquise por matéria, tópico ou questão...">
+                    <button type="submit">Buscar</button>
+                </form>
+                <div class="year-filter">
+                    <input type="radio" id="filter-all" name="ano-filtro" value="todos" checked>
+                    <label for="filter-all">Todos</label>
+
+                    <input type="radio" id="filter-1" name="ano-filtro" value="1">
+                    <label for="filter-1">1º Ano</label>
+
+                    <input type="radio" id="filter-2" name="ano-filtro" value="2">
+                    <label for="filter-2">2º Ano</label>
+
+                    <input type="radio" id="filter-3" name="ano-filtro" value="3">
+                    <label for="filter-3">3º Ano</label>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <!-- A seção de matérias foi removida. Os resultados da busca aparecerão aqui. -->
+            <!-- Esta área agora é totalmente controlada pelo JavaScript -->
+            <div id="search-results"></div>
+        </main>
+
+        <footer class="site-footer">
+            <!-- Container para os Tópicos em Destaque -->
+            <div id="featured-topics-container" class="container"></div>
+        </footer>
+    </div>
+
+    <script src="projectAlura.js"></script>
+</body>
+</html>
