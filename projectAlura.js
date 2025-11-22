@@ -1830,7 +1830,7 @@ document.addEventListener('DOMContentLoaded', () => {
         subjectBrowserContainer.innerHTML = `
             <div class="sidebar-menu">
                 <div class="menu-item">
-                    <a href="projectAlura.html" class="vocational-test-link">
+                    <a href="index.html" class="vocational-test-link">
                         🏠 Início
                     </a>
                 </div>
@@ -2248,3 +2248,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sortear um tema inicial ao carregar a página
     sortearTema();
 });
+
